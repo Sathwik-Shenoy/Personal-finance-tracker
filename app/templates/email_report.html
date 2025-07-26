@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Email Report - Personal Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center">📧 Email Financial Report</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Send your financial report as a PDF attachment to any email address.</p>
+                
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               value="{{ current_user.email }}" required>
+                        <div class="form-text">Report will be sent to this email address</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <strong>📊 Report will include:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>Financial summary (income, expenses, balance)</li>
+                            <li>Transaction count</li>
+                            <li>Generated PDF attachment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">
+                            📧 Send Report
+                        </button>
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">
+                            ← Back to Dashboard
+                        </a>
+                    </div>
+                </form>
+                
+                <div class="mt-4">
+                    <small class="text-muted">
+                        <strong>Note:</strong> Email service may take a few moments to deliver. 
+                        Please check your spam folder if you don't receive the email within 5 minutes.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

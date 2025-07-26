@@ -1,0 +1,39 @@
+[tool.pyright]
+include = ["app", "run.py"]
+exclude = ["**/__pycache__", ".venv"]
+venvPath = "."
+venv = ".venv"
+
+reportMissingImports = false
+reportMissingTypeStubs = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportGeneralTypeIssues = "warning"
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+reportPrivateImportUsage = false
+
+pythonVersion = "3.13"
+pythonPlatform = "All"
+
+[tool.black]
+line-length = 120
+target-version = ['py313']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.flake8]
+max-line-length = 120
+ignore = ["E203", "W503", "F401", "E501"]
+exclude = [".venv", "__pycache__", "*.pyc"]

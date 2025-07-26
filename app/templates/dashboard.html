@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Personal Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2>📊 Financial Dashboard</h2>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">💰 Total Income</h5>
+                <h3>₹{{ "%.2f"|format(total_income) }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <h5 class="card-title">💸 Total Expenses</h5>
+                <h3>₹{{ "%.2f"|format(total_expenses) }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white {% if net_balance >= 0 %}bg-info{% else %}bg-warning{% endif %}">
+            <div class="card-body">
+                <h5 class="card-title">📈 Net Balance</h5>
+                <h3>₹{{ "%.2f"|format(net_balance) }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+{% if charts_json %}
+<div class="row mb-4">
+    {% if charts_json.overview_bar %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>📊 Financial Overview</h5>
+            </div>
+            <div class="card-body">
+                <div id="overview-chart"></div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if charts_json.category_pie %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>🥧 Expense Categories</h5>
+            </div>
+            <div class="card-body">
+                <div id="category-chart"></div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% if charts_json.monthly_bar %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>📅 Monthly Trends</h5>
+            </div>
+            <div class="card-body">
+                <div id="monthly-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+<!-- Category Summary -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>📋 Spending by Category</h5>
+            </div>
+            <div class="card-body">
+                {% if category_totals %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in category_totals %}
+                                    <tr>
+                                        <td>{{ category.category }}</td>
+                                        <td class="{% if category.total < 0 %}text-danger{% else %}text-success{% endif %}">
+                                            ₹{{ "%.2f"|format(category.total) }}
+                                        </td>
+                                        <td>{{ category.count }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No transaction data available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>📅 Monthly Totals</h5>
+            </div>
+            <div class="card-body">
+                {% if monthly_totals %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for month in monthly_totals %}
+                                    <tr>
+                                        <td>{{ month.month }}</td>
+                                        <td class="{% if month.total < 0 %}text-danger{% else %}text-success{% endif %}">
+                                            ₹{{ "%.2f"|format(month.total) }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No monthly data available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Transactions -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5>📝 Recent Transactions</h5>
+                <div>
+                    <a href="{{ url_for('main.generate_report') }}" class="btn btn-success btn-sm me-2">
+                        📄 Download PDF Report
+                    </a>
+                    <a href="{{ url_for('main.email_report') }}" class="btn btn-info btn-sm me-2">
+                        📧 Email Report
+                    </a>
+                    <a href="{{ url_for('main.upload_file') }}" class="btn btn-primary btn-sm">
+                        📁 Add More Data
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if transactions %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaction in transactions[:20] %}
+                                    <tr>
+                                        <td>{{ transaction.date.strftime('%Y-%m-%d') }}</td>
+                                        <td>
+                                            <span class="badge bg-secondary">{{ transaction.category }}</span>
+                                        </td>
+                                        <td class="{% if transaction.amount < 0 %}text-danger{% else %}text-success{% endif %}">
+                                            ₹{{ "%.2f"|format(transaction.amount) }}
+                                        </td>
+                                        <td>{{ transaction.description or '-' }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if transactions|length > 20 %}
+                        <div class="text-center">
+                            <small class="text-muted">Showing 20 most recent transactions out of {{ transactions|length }} total</small>
+                        </div>
+                    {% endif %}
+                    
+                {% else %}
+                    <div class="text-center py-5">
+                        <p class="text-muted">No transactions found. Start by uploading a CSV file.</p>
+                        <a href="{{ url_for('main.upload_file') }}" class="btn btn-primary">
+                            📁 Upload CSV File
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Plotly JavaScript -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+{% if charts_json %}
+<script>
+    // Render charts when page loads
+    document.addEventListener('DOMContentLoaded', function()
+    {
+        
+        {% if (charts_json.overview_bar %}
+        // Financial Overview Chart
+        var overviewData = {{ charts_json.overview_bar|safe }};
+        Plotly.newPlot('overview-chart', overviewData.data, overviewData.layout, {responsive: true});
+        {% endif %}
+        
+        {% if charts_json.category_pie %}
+        // Category Pie Chart
+        var categoryData = {{ charts_json.category_pie|safe }};
+        Plotly.newPlot('category-chart', categoryData.data, categoryData.layout, {responsive: true});
+        {% endif %}
+        
+        {% if charts_json.monthly_bar %}
+        // Monthly Bar Chart
+        var monthlyData = {{ charts_json.monthly_bar|safe }};
+        Plotly.newPlot('monthly-chart', monthlyData.data, monthlyData.layout, {responsive: true});
+        {% endif %}
+    });
+</script>
+{% endif %}
+{% endblock %}
