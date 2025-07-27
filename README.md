@@ -1,8 +1,8 @@
-# Personal Finance Tracker 💰🇮🇳 
+# Personal Finance Tracker
 
 A **modern, full-stack web application** built with Flask for tracking personal finances with **Indian Rupee (₹) support**, complete **REST API**, **JWT authentication**, **PostgreSQL support**, and **Docker deployment**.
 
-## Features ✨
+## Features
 
 - **Indian Rupee (₹) Support** - All amounts displayed in Indian Rupees
 - **REST API** - Complete RESTful API with Flask-RESTX and Swagger documentation
@@ -21,7 +21,7 @@ A **modern, full-stack web application** built with Flask for tracking personal 
 - **Database Migrations** - Alembic-powered database schema management
 - **CORS Support** - Cross-origin resource sharing for frontend applications
 
-## Installation 🚀
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -70,7 +70,7 @@ A **modern, full-stack web application** built with Flask for tracking personal 
    - **API Documentation**: http://127.0.0.1:5000/api/docs/
    - **API Base URL**: http://127.0.0.1:5000/api/v1/
 
-## Quick Start 🚀
+## Quick Start
 
 1. **Run the application** (if dependencies are already installed):
    ```bash
@@ -85,7 +85,7 @@ A **modern, full-stack web application** built with Flask for tracking personal 
 
 3. **Create account** and start uploading your financial data!
 
-## Usage 📊
+## Usage
 
 ### Getting Started
 1. **Register** a new account or **Login** with existing credentials
@@ -129,7 +129,7 @@ To enable email functionality:
    set MAIL_PASSWORD=your_app_password
    ```
 
-## Indian Rupee (₹) Support 🇮🇳
+## Indian Rupee (₹) Support
 
 This application is specifically designed for Indian users with complete Rupee support:
 
@@ -150,7 +150,7 @@ This application is specifically designed for Indian users with complete Rupee s
 - Entertainment, Travel
 - Education, Books
 
-## File Structure 📁
+## File Structure
 
 ```
 Personal-finance-tracker/
@@ -195,7 +195,7 @@ Personal-finance-tracker/
 └── README.md             # This file
 ```
 
-## Technologies Used 🛠️
+## Technologies Used
 
 - **Backend:** Flask 2.3.3, SQLAlchemy 2.0.32, Flask-Login 0.6.3
 - **API:** Flask-RESTX 1.3.0, Flask-JWT-Extended 4.6.0, Swagger/OpenAPI 3.0
@@ -212,7 +212,7 @@ Personal-finance-tracker/
 - **Python:** 3.13+ compatible
 - **CORS:** Flask-CORS for API access
 
-## Features in Detail 🔍
+## Features in Detail
 
 ### Dashboard Analytics
 - **Financial Overview:** Total income, expenses, and net balance in ₹
@@ -254,7 +254,7 @@ Personal-finance-tracker/
 - **Password Hashing:** Secure password storage
 - **Session Management:** Automatic session handling
 
-## Troubleshooting 🔧
+## Troubleshooting
 
 ### Common Issues and Solutions
 
@@ -326,7 +326,7 @@ flask db migrate -m "Initial migration"
 flask db upgrade
 ```
 
-## Performance & Scaling 📈
+## Performance & Scaling
 
 ### Optimization Tips
 
@@ -362,7 +362,7 @@ flask db upgrade
 - Database performance monitoring
 - API usage analytics and monitoring
 
-## Contributing 🤝
+## Contributing
 
 We welcome contributions! Here's how you can help:
 
@@ -406,13 +406,13 @@ We welcome contributions! Here's how you can help:
 
 ### Areas for Contribution
 
-- 🔐 **Security Enhancements**: Rate limiting, input validation
-- 📱 **Mobile Support**: React Native or Flutter app using our API
-- 📊 **Advanced Analytics**: Machine learning insights, budgeting features
-- 🌍 **Internationalization**: Support for multiple currencies and languages
-- ⚡ **Performance**: Caching, database optimization
-- 🔧 **DevOps**: CI/CD pipelines, automated testing
-- 🎨 **UI/UX**: Modern frontend framework integration
+- **Security Enhancements**: Rate limiting, input validation
+- **Mobile Support**: React Native or Flutter app using our API
+- **Advanced Analytics**: Machine learning insights, budgeting features
+- **Internationalization**: Support for multiple currencies and languages
+- **Performance**: Caching, database optimization
+- **DevOps**: CI/CD pipelines, automated testing
+- **UI/UX**: Modern frontend framework integration
 
 ### Submitting Changes
 
@@ -432,14 +432,14 @@ When adding new API endpoints:
 - Format currency amounts with ₹ symbol
 - Add input validation with Flask-RESTX models
 
-## Support & Community 💬
+## Support & Community
 
 ### Getting Help
 
-- **📖 Documentation**: Check this README for comprehensive guides
-- **🐛 Issues**: Report bugs via GitHub Issues
-- **💡 Feature Requests**: Suggest enhancements via GitHub Issues
-- **📧 Contact**: Reach out for deployment or integration support
+- **Documentation**: Check this README for comprehensive guides
+- **Issues**: Report bugs via GitHub Issues
+- **Feature Requests**: Suggest enhancements via GitHub Issues
+- **Contact**: Reach out for deployment or integration support
 
 ### FAQ
 
@@ -466,7 +466,7 @@ A: For SQLite: copy the `.db` file. For PostgreSQL: use `pg_dump` or your hostin
 - Test your contributions thoroughly
 - Help others in the community
 
-### Roadmap 🗺️
+### Roadmap
 
 - [ ] Mobile application (React Native/Flutter)
 - [ ] Advanced budgeting and goal tracking
@@ -476,20 +476,20 @@ A: For SQLite: copy the `.db` file. For PostgreSQL: use `pg_dump` or your hostin
 - [ ] Cryptocurrency portfolio tracking
 - [ ] Tax calculation and reporting features
 
-## License 📄
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **What this means:**
-- ✅ Commercial use
-- ✅ Modification  
-- ✅ Distribution
-- ✅ Private use
-- ❗ Must include license and copyright notice
+- Commercial use
+- Modification  
+- Distribution
+- Private use
+- Must include license and copyright notice
 
 ---
 
-## Acknowledgments 🙏
+## Acknowledgments
 
 - **Flask Community** for the excellent web framework
 - **Plotly** for beautiful interactive charts
@@ -500,13 +500,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*Built with ❤️ for the Indian finance community*
+*Built with care for the Indian finance community*
 
 **Version**: 2.0.0 | **Last Updated**: 2024 | **Status**: Active Development
 
 ---
 
-## Docker Deployment 🐳
+## Docker Deployment
 
 ### Quick Start with Docker Compose
 
@@ -553,7 +553,7 @@ docker run -d --name finance-app \
   finance-tracker
 ```
 
-## API Usage 🔌
+## API Usage
 
 ### Authentication
 
@@ -616,7 +616,7 @@ curl -X POST http://localhost:5000/api/v1/reports/pdf \
   --output financial_report.pdf
 ```
 
-## Database Migration 🗃️
+## Database Migration
 
 ### PostgreSQL Setup
 
@@ -659,7 +659,7 @@ flask db upgrade
 flask db downgrade
 ```
 
-## API Testing 🧪
+## API Testing
 
 ### Using the Test Script
 
@@ -674,12 +674,12 @@ python test_api.py
 ```
 
 The test script will:
-- ✅ Register a new user
-- ✅ Login and obtain JWT tokens
-- ✅ Create sample transactions
-- ✅ Test all CRUD operations
-- ✅ Generate reports and charts
-- ✅ Test authentication flows
+- Register a new user
+- Login and obtain JWT tokens
+- Create sample transactions
+- Test all CRUD operations
+- Generate reports and charts
+- Test authentication flows
 
 ### Manual API Testing
 
@@ -727,7 +727,7 @@ curl -X GET "$API_BASE/transactions/summary" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
-## Production Deployment 🚀
+## Production Deployment
 
 ### Environment Variables
 
@@ -796,7 +796,7 @@ gunicorn --bind 0.0.0.0:5000 --workers 4 run:app
 - Enable database connection encryption
 - Regular security updates
 
-## Architecture Overview 🏗️
+## Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐

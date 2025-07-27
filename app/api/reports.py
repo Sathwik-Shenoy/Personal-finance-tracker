@@ -265,7 +265,7 @@ class ReportPDF(Resource):
             spaceAfter=30,
             alignment=1  # Center alignment
         )
-        elements.append(Paragraph("Personal Finance Report 💰", title_style))
+        elements.append(Paragraph("Personal Finance Report", title_style))
         elements.append(Paragraph(f"Generated for: {user.username}", styles['Normal']))
         elements.append(Paragraph(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", styles['Normal']))
         elements.append(Spacer(1, 20))

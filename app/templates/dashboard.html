@@ -4,8 +4,18 @@
 
 {% block content %}
 <div class="row mb-4">
-    <div class="col-12">
-        <h2>📊 Financial Dashboard</h2>
+    <div class="col-12">                <h5>Recent Transactions</h5>
+                <div class="mb-3">
+                    <a href="{{ url_for('main.download_report') }}" class="btn btn-success btn-sm me-2">
+                        Download PDF Report
+                    </a>
+                    <a href="{{ url_for('main.email_report') }}" class="btn btn-primary btn-sm me-2">
+                        Email Report
+                    </a>
+                    <a href="{{ url_for('main.upload_file') }}" class="btn btn-secondary btn-sm">
+                        Add More Data
+                    </a>
+                </div>>Financial Dashboard</h2>
     </div>
 </div>
 
@@ -14,7 +24,7 @@
     <div class="col-md-4">
         <div class="card text-white bg-success">
             <div class="card-body">
-                <h5 class="card-title">💰 Total Income</h5>
+                <h5 class="card-title">Total Income</h5>
                 <h3>₹{{ "%.2f"|format(total_income) }}</h3>
             </div>
         </div>
@@ -22,7 +32,7 @@
     <div class="col-md-4">
         <div class="card text-white bg-danger">
             <div class="card-body">
-                <h5 class="card-title">💸 Total Expenses</h5>
+                <h5 class="card-title">Total Expenses</h5>
                 <h3>₹{{ "%.2f"|format(total_expenses) }}</h3>
             </div>
         </div>
@@ -30,7 +40,7 @@
     <div class="col-md-4">
         <div class="card text-white {% if net_balance >= 0 %}bg-info{% else %}bg-warning{% endif %}">
             <div class="card-body">
-                <h5 class="card-title">📈 Net Balance</h5>
+                <h5 class="card-title">Net Balance</h5>
                 <h3>₹{{ "%.2f"|format(net_balance) }}</h3>
             </div>
         </div>
@@ -44,7 +54,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>📊 Financial Overview</h5>
+                <h5>Financial Overview</h5>
             </div>
             <div class="card-body">
                 <div id="overview-chart"></div>
@@ -57,7 +67,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>🥧 Expense Categories</h5>
+                <h5>Expense Categories</h5>
             </div>
             <div class="card-body">
                 <div id="category-chart"></div>
@@ -72,7 +82,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5>📅 Monthly Trends</h5>
+                <h5>Monthly Trends</h5>
             </div>
             <div class="card-body">
                 <div id="monthly-chart"></div>
@@ -88,7 +98,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>📋 Spending by Category</h5>
+                <h5>Spending by Category</h5>
             </div>
             <div class="card-body">
                 {% if category_totals %}
@@ -124,7 +134,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>📅 Monthly Totals</h5>
+                <h5>Monthly Totals</h5>
             </div>
             <div class="card-body">
                 {% if monthly_totals %}
@@ -161,16 +171,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5>📝 Recent Transactions</h5>
+                <h5>Recent Transactions</h5>
                 <div>
                     <a href="{{ url_for('main.generate_report') }}" class="btn btn-success btn-sm me-2">
-                        📄 Download PDF Report
+                        Download PDF Report
                     </a>
                     <a href="{{ url_for('main.email_report') }}" class="btn btn-info btn-sm me-2">
-                        📧 Email Report
+                        Email Report
                     </a>
                     <a href="{{ url_for('main.upload_file') }}" class="btn btn-primary btn-sm">
-                        📁 Add More Data
+                        Add More Data
                     </a>
                 </div>
             </div>
@@ -213,7 +223,7 @@
                     <div class="text-center py-5">
                         <p class="text-muted">No transactions found. Start by uploading a CSV file.</p>
                         <a href="{{ url_for('main.upload_file') }}" class="btn btn-primary">
-                            📁 Upload CSV File
+                            Upload CSV File
                         </a>
                     </div>
                 {% endif %}
